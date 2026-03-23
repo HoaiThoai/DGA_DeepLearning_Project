@@ -1,0 +1,254 @@
+:root {
+    --bg-color: #0d1117;
+    --card-bg: #161b22;
+    --border-color: #30363d;
+    --primary-text: #c9d1d9;
+    --secondary-text: #8b949e;
+    --accent-color: #58a6ff;
+    --accent-hover: #3182ce;
+    --danger-color: #f85149;
+    --success-color: #3fb950;
+    --warning-color: #d29922;
+    --font-family: 'Inter', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--primary-text);
+    font-family: var(--font-family);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+}
+
+header h1 span {
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    vertical-align: super;
+}
+
+header p {
+    color: var(--secondary-text);
+    font-size: 0.95rem;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+form {
+    display: flex;
+    gap: 1rem;
+}
+
+input[type="text"] {
+    flex: 1;
+    background-color: #0d1117;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: #fff;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-family: var(--font-family);
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+button {
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: var(--accent-hover);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Result Section */
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.result-header h2 {
+    font-size: 1.2rem;
+}
+
+.badge {
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.badge.legit {
+    background-color: rgba(63, 185, 80, 0.2);
+    color: var(--success-color);
+    border: 1px solid rgba(63, 185, 80, 0.4);
+}
+
+.badge.dga {
+    background-color: rgba(248, 81, 73, 0.2);
+    color: var(--danger-color);
+    border: 1px solid rgba(248, 81, 73, 0.4);
+}
+
+.badge.suspicious {
+    background-color: rgba(210, 153, 34, 0.2);
+    color: var(--warning-color);
+    border: 1px solid rgba(210, 153, 34, 0.4);
+}
+
+
+/* Probability Bar */
+.probability-section {
+    margin-bottom: 2rem;
+}
+
+.prob-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background-color: #0d1117;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--border-color);
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.8s;
+}
+
+/* Explainability */
+.explainability-section h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.explainability-section .subtitle {
+    font-size: 0.85rem;
+    color: var(--secondary-text);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.legend-red { color: var(--danger-color); font-weight: bold; }
+.legend-green { color: var(--success-color); font-weight: bold; }
+
+.highlight-wrapper {
+    background-color: #0d1117;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: monospace;
+    font-weight: bold;
+    word-break: break-all;
+    line-height: 1.8;
+}
+
+.char-box {
+    display: inline-block;
+    padding: 2px 4px;
+    border-radius: 4px;
+    margin: 0 1px;
+    transition: background-color 0.3s;
+    color: #fff;
+}
+
+/* Loading Spinner */
+#loading {
+    text-align: center;
+    padding: 2rem;
+    color: var(--secondary-text);
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(88, 166, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--accent-color);
+    animation: spin 1s ease-in-out infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.error-card {
+    background-color: rgba(248, 81, 73, 0.1);
+    border-color: rgba(248, 81, 73, 0.4);
+    color: var(--danger-color);
+    text-align: center;
+}
+
+.explanation-text {
+    font-weight: 500;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: var(--border-color); /* Fallback since --hover-color is undefined, use border-color */
+    border-radius: 6px;
+    border-left: 4px solid var(--accent-color);
+}

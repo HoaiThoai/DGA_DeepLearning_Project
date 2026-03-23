@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual Environments
+venv/
+env/
+.env
+.venv/
+
+# Deep Learning / Keras Data
+tuner_results/
+models/*.h5
+models/*.keras
+models/*.png
+
+# VS Code / IDEs
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Data (Optional to ignore if too large)
+# data/*.csv

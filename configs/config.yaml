@@ -1,0 +1,91 @@
+# ============================================================
+# DGA Detection System - Configuration File
+# ============================================================
+# This YAML file centralises every tunable parameter for
+# data processing, model architecture, training, and evaluation.
+# ============================================================
+
+data:
+  # Path to the raw dataset (relative to project root)
+  filepath: "data/dga_data.csv"
+
+  # Column mapping – maps raw CSV columns to canonical names
+  domain_column: "domain"
+  label_column: "isDGA"
+
+  # Label encoding: value in CSV that represents a DGA domain
+  positive_label: "dga"
+
+  # Train / Validation / Test split ratios (must sum to 1.0)
+  train_ratio: 0.7
+  val_ratio: 0.2
+  test_ratio: 0.1
+
+  # Random seed for reproducibility
+  random_seed: 42
+
+  # SMOTE configuration
+  smote:
+    enabled: true
+    random_state: 42
+
+model:
+  # Maximum length of a domain name (in characters).
+  # Domains shorter than this are padded; longer ones are truncated.
+  max_sequence_length: 75
+
+  # Size of the character vocabulary (printable ASCII + padding + OOV)
+  vocab_size: 128
+
+  # Embedding dimension for the character-level embedding layer
+  embedding_dim: 64
+
+  # 1D-CNN parameters
+  cnn_filters: 128
+  cnn_kernel_size: 3
+
+  # LSTM / Bi-LSTM parameters
+  lstm_units: 64
+  use_bidirectional: true
+
+  # Dense layer before the output
+  dense_units: 64
+
+  # Default dropout rate (will be tuned)
+  dropout_rate: 0.3
+
+training:
+  # Number of training epochs (upper bound; Early Stopping may halt sooner)
+  epochs: 50
+
+  # Default batch size (will be tuned)
+  batch_size: 128
+
+  # Default learning rate (will be tuned)
+  learning_rate: 0.001
+
+  # Early Stopping configuration
+  early_stopping:
+    monitor: "val_loss"
+    patience: 5
+    restore_best_weights: true
+
+  # KerasTuner configuration
+  tuner:
+    max_trials: 10
+    executions_per_trial: 1
+    directory: "tuner_results"
+    project_name: "dga_tuner"
+    # Search ranges
+    learning_rate_min: 0.0001
+    learning_rate_max: 0.01
+    dropout_min: 0.2
+    dropout_max: 0.5
+    batch_size_choices: [64, 128, 256]
+
+evaluation:
+  # Directory in which to persist outputs (model weights, plots, reports)
+  output_dir: "models"
+  roc_curve_path: "models/roc_curve.png"
+  confusion_matrix_path: "models/confusion_matrix.png"
+  model_save_path: "models/best_dga_model.h5"

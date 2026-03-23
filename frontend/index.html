@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DGA Detection Engine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>DGA Detection Engine <span></span></h1>
+            <p>Deep Learning + Explainable AI (LIME) Character Analysis</p>
+        </header>
+
+        <main>
+            <div class="card search-card">
+                <form id="predict-form">
+                    <input type="text" id="domain-input" placeholder="Enter a domain name (e.g., example.com)" required autocomplete="off">
+                    <button type="submit" id="analyze-btn">Analyze</button>
+                </form>
+            </div>
+
+            <div id="results" class="card result-card hidden">
+                <div class="result-header">
+                    <h2>Analysis Result</h2>
+                    <span id="label-badge" class="badge">--</span>
+                </div>
+
+                <div class="probability-section">
+                    <div class="prob-header">
+                        <span>DGA Probability</span>
+                        <span id="prob-percentage">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="prob-fill" class="progress-fill"></div>
+                    </div>
+                </div>
+
+                <div class="explainability-section">
+                    <h3>Explainable AI (LIME Character Weights)</h3>
+                    <p class="subtitle">
+                        <span class="legend-red">Red</span> indicates characters driving the model towards a <strong>DGA</strong> prediction.<br>
+                        <span class="legend-green">Green</span> indicates characters driving the model towards a <strong>Legit</strong> prediction.
+                    </p>
+                    
+                    <p id="explanation-text" class="explanation-text">
+                        <!-- Dynamic text summary injected here -->
+                    </p>
+                    
+                    <div id="char-highlight-box" class="highlight-wrapper">
+                        <!-- Characters will be injected here dynamically -->
+                    </div>
+                </div>
+            </div>
+            
+            <div id="loading" class="hidden">
+                <div class="spinner"></div>
+                <p>Running Inference & LIME Explainer...</p>
+            </div>
+            
+            <div id="error" class="card error-card hidden">
+                <p id="error-msg"></p>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
